@@ -1,307 +1,147 @@
 import { useState } from 'react'
 import {
-  // Actions & Navigation
   Button,
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuLabel,
-  // Forms & Inputs
-  Input,
-  PasswordInput,
-  SearchInput,
-  TextArea,
-  PinInput,
-  Switch,
-  Checkbox,
-  RadioGroup,
-  // Data Display
   Badge,
-  Avatar,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-  StatCard,
-  ProgressBar,
-  Heading,
-  Text,
-  // Overlays & Feedback
   Modal,
   ModalHeader,
   ModalTitle,
   ModalDescription,
   ModalBody,
   ModalFooter,
+  Input,
+  Switch,
   Toaster,
   toast,
 } from 'odt-lightweight-ui'
 
+import { OverviewSection } from './sections/OverviewSection'
+import { FormsSection } from './sections/FormsSection'
+import { ComponentsSection } from './sections/ComponentsSection'
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
+type TabId = 'overview' | 'forms' | 'components'
+
+const TABS: { id: TabId; label: string }[] = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'forms', label: 'Forms' },
+  { id: 'components', label: 'Components' },
+]
+
+// ─── App ─────────────────────────────────────────────────────────────────────
+
 export default function App() {
-  // Modal state
+  const [tab, setTab] = useState<TabId>('overview')
   const [modalOpen, setModalOpen] = useState(false)
+  const [notify, setNotify] = useState(true)
+  const [isDeploying, setIsDeploying] = useState(false)
 
-  // Form states
-  const [switchChecked, setSwitchChecked] = useState(true)
-  const [checkboxChecked, setCheckboxChecked] = useState(true)
-  const [radioValue, setRadioValue] = useState('pro')
-  const [pinValue, setPinValue] = useState('')
-  const [saveLoading, setSaveLoading] = useState(false)
-
-  const handleSave = () => {
-    setSaveLoading(true)
+  const handleDeploy = () => {
+    setIsDeploying(true)
     setTimeout(() => {
-      setSaveLoading(false)
-      toast.success('Account settings saved successfully!')
+      setIsDeploying(false)
+      setModalOpen(false)
+      toast.success('Service deployed to production!')
     }, 1200)
   }
 
   return (
-    <div style={{ maxWidth: '1080px', margin: '2.5rem auto', padding: '0 1.5rem', display: 'flex', flexDirection: 'column', gap: '3rem', fontFamily: 'var(--font-family-sans)' }}>
-      {/* Toast Container */}
+    <div className="min-h-screen bg-surface font-sans antialiased">
       <Toaster position="top-right" />
 
-      {/* Hero Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid var(--color-line, #e4e4e9)', paddingBottom: '1.5rem' }}>
-        <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-            <Heading as="h1" size="3xl">ODT Lightweight UI Showcase</Heading>
-            <Badge variant="filled" color="primary">v1.0.0</Badge>
+      {/* ── Hero Header ──────────────────────────────────────────────────────── */}
+      <header className="bg-white">
+        <div className="mx-auto max-w-5xl px-6 py-10">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+
+            {/* Brand */}
+            <div>
+              <h1 className="text-5xl font-extrabold leading-none tracking-tight">
+                <span style={{ color: 'hsl(240 78.3% 34.3%)' }}>ODT</span>{' '}
+                <span className="font-light" style={{ color: 'hsl(47 100% 45%)' }}>lightweight</span>
+              </h1>
+              <p className="mt-1.5 text-lg text-fg font-light">
+                Token-driven React UI — clean, lightweight, composable.
+              </p>
+              <div className="mt-3 flex gap-2 items-center">
+                <Badge variant="subtle" color="primary">v1.1.4</Badge>
+                <Badge variant="subtle" color="success" dot>Stable</Badge>
+                <Badge variant="subtle" color="info">React 19</Badge>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex gap-3 items-center">
+              <Button variant="ghost" onClick={() => toast.info('ODT Lightweight is active!')}>
+                Quick Toast
+              </Button>
+              <Button variant="capsule" color="primary" onClick={() => setModalOpen(true)}>
+                Launch Modal
+              </Button>
+            </div>
+
           </div>
-          <Text size="lg" color="muted">
-            Token-driven, ultra-lightweight React UI library with zero styling overhead.
-          </Text>
         </div>
+      </header>
 
-        {/* Action Controls & Dropdown */}
-        <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-          <Button variant="ghost" onClick={() => toast.info('Welcome to ODT Design System!')}>
-            Quick Toast
-          </Button>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="frosted" color="primary">Actions Menu</Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" style={{ width: '220px' }}>
-              <DropdownMenuLabel>Quick Actions</DropdownMenuLabel>
-              <DropdownMenuItem onSelect={() => toast.success('Exporting dataset...')}>
-                Export Report
-              </DropdownMenuItem>
-              <DropdownMenuItem onSelect={() => toast.info('Navigating to settings...')}>
-                System Settings
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onSelect={() => setModalOpen(true)}>
-                Open Dialog Modal
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem variant="danger" onSelect={() => toast.error('Account deactivated!')}>
-                Deactivate Account
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button variant="filled" color="primary" onClick={() => setModalOpen(true)}>
-            Launch Modal
-          </Button>
+      {/* ── Sticky Tab Bar ───────────────────────────────────────────────────── */}
+      <div className="sticky top-0 z-10 bg-surface/80 backdrop-blur-sm border-b border-neutral-100">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="flex gap-0">
+            {TABS.map(({ id, label }) => {
+              const isActive = tab === id
+              return (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setTab(id)}
+                  className={[
+                    'px-5 py-3.5 text-sm font-medium transition-all border-b-2',
+                    isActive
+                      ? 'border-primary-900 text-primary-900'
+                      : 'border-transparent text-neutral-400 hover:text-neutral-700',
+                  ].join(' ')}
+                >
+                  {label}
+                </button>
+              )
+            })}
+          </div>
         </div>
       </div>
 
-      {/* 1. Analytics & Metrics */}
-      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <Heading as="h2" size="xl">1. Metrics & Data Display</Heading>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
-          <StatCard
-            title="Total Bookings"
-            value="14,250"
-            trend="+18.4% vs last month"
-            trendDirection="positive"
-            progress={74}
-          />
-          <StatCard
-            title="Active Workspaces"
-            value="1,840"
-            trend="+8.2% new users"
-            trendDirection="positive"
-            color="primary"
-            progress={88}
-          />
-          <StatCard
-            title="Server Load"
-            value="38.5%"
-            trend="-2.1% stabilized"
-            trendDirection="neutral"
-            color="warning"
-            progress={38}
-          />
-          <StatCard
-            title="System Incidents"
-            value="0"
-            trend="100% SLA Uptime"
-            trendDirection="positive"
-            color="success"
-            progress={100}
-          />
-        </div>
-      </section>
+      {/* ── Page Body ────────────────────────────────────────────────────────── */}
+      <main className="mx-auto max-w-5xl px-6 py-10">
+        {tab === 'overview' && <OverviewSection />}
+        {tab === 'forms' && <FormsSection />}
+        {tab === 'components' && <ComponentsSection />}
+      </main>
 
-      {/* 2. Interactive Form & Profile Card */}
-      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <Heading as="h2" size="xl">2. Forms & User Controls</Heading>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '1.5rem' }}>
-          {/* Main Profile Card */}
-          <Card variant="elevated">
-            <CardHeader>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <Avatar name="Korn Chatikavanij" size="lg" />
-                <div>
-                  <CardTitle>Organization Settings</CardTitle>
-                  <CardDescription>Update your enterprise workspace configuration</CardDescription>
-                </div>
-              </div>
-              <Badge variant="subtle" color="success" dot>Verified</Badge>
-            </CardHeader>
-
-            <CardContent style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-              <Input label="Workspace Name" defaultValue="ODT Global Enterprise" />
-              <SearchInput placeholder="Search team members, permissions..." />
-              <PasswordInput label="Admin Passkey" defaultValue="supersecretpasscode" />
-              <TextArea label="Project Scope & Description" rows={3} defaultValue="Developing next-gen lightweight web tools and design tokens." />
-
-              <div>
-                <Text size="sm" weight="semibold" style={{ marginBottom: '0.5rem' }}>Security OTP / PIN Code</Text>
-                <PinInput length={6} value={pinValue} onChange={setPinValue} />
-              </div>
-            </CardContent>
-
-            <CardFooter style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <Button variant="ghost" onClick={() => toast.info('Draft discarded')}>
-                Discard
-              </Button>
-              <Button variant="filled" color="primary" loading={saveLoading} onClick={handleSave}>
-                Save Changes
-              </Button>
-            </CardFooter>
-          </Card>
-
-          {/* Preferences & Toggles Card */}
-          <Card variant="outlined">
-            <CardHeader>
-              <CardTitle>Notifications & Billing</CardTitle>
-              <CardDescription>Manage your subscription and automated alerts</CardDescription>
-            </CardHeader>
-
-            <CardContent style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <Switch
-                checked={switchChecked}
-                onCheckedChange={setSwitchChecked}
-                label="Automated Deployments"
-                description="Trigger automated webhook builds on git push."
-              />
-
-              <Checkbox
-                checked={checkboxChecked}
-                onChange={(e) => setCheckboxChecked(e.target.checked)}
-                label="Subscribe to weekly analytics digest"
-              />
-
-              <div>
-                <Text size="sm" weight="semibold" style={{ marginBottom: '0.75rem' }}>Subscription Tier</Text>
-                <RadioGroup
-                  value={radioValue}
-                  onChange={setRadioValue}
-                  options={[
-                    { label: 'Starter Plan (Free)', value: 'starter' },
-                    { label: 'Professional Plan ($49/mo)', value: 'pro' },
-                    { label: 'Enterprise Custom', value: 'enterprise' },
-                  ]}
-                />
-              </div>
-
-              <div>
-                <Text size="sm" weight="semibold" style={{ marginBottom: '0.5rem' }}>Storage Utilization (82%)</Text>
-                <ProgressBar value={82} color="primary" size="md" />
-              </div>
-            </CardContent>
-
-            <CardFooter>
-              <Button variant="capsule" color="secondary" fullWidth onClick={() => toast.success('Plan upgraded to Enterprise!')}>
-                Upgrade Membership
-              </Button>
-            </CardFooter>
-          </Card>
-        </div>
-      </section>
-
-      {/* 3. Button & Badge Gallery */}
-      <section style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <Heading as="h2" size="xl">3. Button & Badge Primitives</Heading>
-
-        <Card variant="muted">
-          <CardContent style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', padding: '1.5rem' }}>
-            <div>
-              <Text size="sm" weight="semibold" style={{ marginBottom: '0.5rem' }}>Button Variants & Colors</Text>
-              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                <Button variant="filled" color="primary">Filled Primary</Button>
-                <Button variant="frosted" color="primary">Frosted Glass</Button>
-                <Button variant="capsule" color="secondary">Capsule Secondary</Button>
-                <Button variant="ghost" color="danger">Ghost Danger</Button>
-                <Button variant="filled" color="primary" loading>Loading Button</Button>
-              </div>
-            </div>
-
-            <div>
-              <Text size="sm" weight="semibold" style={{ marginBottom: '0.5rem' }}>Badge Variants</Text>
-              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                <Badge variant="filled" color="primary">Primary</Badge>
-                <Badge variant="subtle" color="success" dot>Active</Badge>
-                <Badge variant="outlined" color="warning">Pending</Badge>
-                <Badge variant="subtle" color="danger">Failed</Badge>
-                <Badge variant="filled" color="secondary">Featured</Badge>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Interactive Modal Dialog */}
-      <Modal open={modalOpen} onOpenChange={setModalOpen} size="md">
+      {/* ── Deploy Modal ─────────────────────────────────────────────────────── */}
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} size="md">
         <ModalHeader>
-          <ModalTitle>Confirm Workspace Action</ModalTitle>
+          <ModalTitle>Deploy Microservice</ModalTitle>
           <ModalDescription>
-            Are you sure you want to initialize the production deployment pipeline? This action will apply migrations.
+            Launch a containerized service to the production cluster.
           </ModalDescription>
         </ModalHeader>
 
         <ModalBody>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <Input label="Confirmation Phrase" placeholder='Type "DEPLOY" to confirm' />
-            <Switch defaultChecked label="Notify team via Slack" />
+          <div className="flex flex-col gap-4">
+            <Input label="Service Name" defaultValue="payment-gateway-v2" />
+            <Input label="Container Image" defaultValue="docker.odt.internal/payment:v2.4.1" />
+            <Switch checked={notify} onCheckedChange={setNotify} label="Notify team on deploy" />
           </div>
         </ModalBody>
 
         <ModalFooter>
-          <Button variant="ghost" onClick={() => setModalOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            variant="filled"
-            color="primary"
-            onClick={() => {
-              setModalOpen(false)
-              toast.success('Production pipeline successfully initiated!')
-            }}
-          >
+          <Button variant="ghost" onClick={() => setModalOpen(false)}>Cancel</Button>
+          <Button variant="filled" color="primary" loading={isDeploying} onClick={handleDeploy}>
             Confirm & Deploy
           </Button>
         </ModalFooter>
       </Modal>
+
     </div>
   )
 }
