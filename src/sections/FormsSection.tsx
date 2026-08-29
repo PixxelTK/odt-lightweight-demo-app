@@ -24,7 +24,7 @@ import {
   CardTitle,
 } from 'odt-lightweight-ui'
 
-// ─── Profile & Credentials Card ───────────────────────────────────────────────
+// --- Profile & Credentials Card ----------------------------------------------
 
 const REGIONS = [
   { group: 'United States', items: ['us-east-1', 'us-east-2', 'us-west-1', 'us-west-2'] },
@@ -66,7 +66,7 @@ function CredentialsCard() {
               defaultValue="admin@odt.io"
             />
 
-            {/* Region — DropdownMenu picker */}
+            {/* Region - DropdownMenu picker */}
             <DropdownMenu>
               <DropdownMenuTrigger label="Deployment Region" fullWidth>
                 {region}
@@ -135,7 +135,7 @@ function CredentialsCard() {
   )
 }
 
-// ─── Automations & Plan Card ──────────────────────────────────────────────────
+// --- Automations & Plan Card --------------------------------------------------
 
 const PLANS = [
   { value: 'starter', label: 'Developer Sandbox', price: 'Free', color: 'info' as const },
@@ -207,7 +207,7 @@ function AutomationsCard() {
             </div>
           </div>
 
-          {/* Plan Selection — custom radio layout */}
+          {/* Plan Selection */}
           <div>
             <p className="mb-3 text-sm font-medium text-fg">
               Infrastructure Plan
@@ -257,7 +257,7 @@ function AutomationsCard() {
   )
 }
 
-// ─── Section ─────────────────────────────────────────────────────────────────
+// --- Section -----------------------------------------------------------------
 
 export function FormsSection() {
   return (

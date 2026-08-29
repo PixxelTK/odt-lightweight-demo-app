@@ -15,7 +15,7 @@ import {
   toast,
 } from 'odt-lightweight-ui'
 
-// ─── Subscription Plan Card ───────────────────────────────────────────────────
+// --- Subscription Plan Card ---------------------------------------------------
 
 function PlanCard() {
   const features = [
@@ -63,7 +63,7 @@ function PlanCard() {
   )
 }
 
-// ─── Event Card ───────────────────────────────────────────────────────────────
+// --- Event Card ---------------------------------------------------------------
 
 function EventCard() {
   return (
@@ -94,7 +94,7 @@ function EventCard() {
   )
 }
 
-// ─── Invite Card ─────────────────────────────────────────────────────────────
+// --- Invite Card -------------------------------------------------------------
 
 function TeamCard() {
   const [emailAlerts, setEmailAlerts] = useState(true)
@@ -151,7 +151,7 @@ function TeamCard() {
   )
 }
 
-// ─── Primitives Row ───────────────────────────────────────────────────────────
+// --- Primitives Row -----------------------------------------------------------
 
 function PrimitivesCard() {
   return (
@@ -200,7 +200,7 @@ function PrimitivesCard() {
   )
 }
 
-// ─── Section ─────────────────────────────────────────────────────────────────
+// --- Section -----------------------------------------------------------------
 
 export function ComponentsSection() {
   return (

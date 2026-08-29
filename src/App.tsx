@@ -18,7 +18,7 @@ import { OverviewSection } from './sections/OverviewSection'
 import { FormsSection } from './sections/FormsSection'
 import { ComponentsSection } from './sections/ComponentsSection'
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// --- Types -------------------------------------------------------------------
 
 type TabId = 'overview' | 'forms' | 'components'
 
@@ -28,7 +28,7 @@ const TABS: { id: TabId; label: string }[] = [
   { id: 'components', label: 'Components' },
 ]
 
-// ─── App ─────────────────────────────────────────────────────────────────────
+// --- App ---------------------------------------------------------------------
 
 export default function App() {
   const [tab, setTab] = useState<TabId>('overview')
@@ -49,7 +49,7 @@ export default function App() {
     <div className="min-h-screen bg-surface font-sans antialiased">
       <Toaster position="top-right" />
 
-      {/* ── Hero Header ──────────────────────────────────────────────────────── */}
+      {/* Hero Header */}
       <header className="bg-white">
         <div className="mx-auto max-w-5xl px-6 py-10">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -61,7 +61,7 @@ export default function App() {
                 <span className="font-light" style={{ color: 'hsl(47 100% 45%)' }}>lightweight</span>
               </h1>
               <p className="mt-1.5 text-lg text-fg font-light">
-                Token-driven React UI — clean, lightweight, composable.
+                Token-driven React UI - clean, lightweight, composable.
               </p>
               <div className="mt-3 flex gap-2 items-center">
                 <Badge variant="subtle" color="primary">v1.1.4</Badge>
@@ -84,7 +84,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* ── Sticky Tab Bar ───────────────────────────────────────────────────── */}
+      {/* Sticky Tab Bar */}
       <div className="sticky top-0 z-10 bg-surface/80 backdrop-blur-sm border-b border-neutral-100">
         <div className="mx-auto max-w-5xl px-6">
           <div className="flex gap-0">
@@ -110,14 +110,14 @@ export default function App() {
         </div>
       </div>
 
-      {/* ── Page Body ────────────────────────────────────────────────────────── */}
+      {/* Page Body */}
       <main className="mx-auto max-w-5xl px-6 py-10">
         {tab === 'overview' && <OverviewSection />}
         {tab === 'forms' && <FormsSection />}
         {tab === 'components' && <ComponentsSection />}
       </main>
 
-      {/* ── Deploy Modal ─────────────────────────────────────────────────────── */}
+      {/* Deploy Modal */}
       <Modal open={modalOpen} onClose={() => setModalOpen(false)} size="md">
         <ModalHeader>
           <ModalTitle>Deploy Microservice</ModalTitle>

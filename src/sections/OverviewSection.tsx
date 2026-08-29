@@ -14,7 +14,7 @@ import {
   toast,
 } from 'odt-lightweight-ui'
 
-// ─── Data ────────────────────────────────────────────────────────────────────
+// --- Data --------------------------------------------------------------------
 
 const services = [
   { name: 'auth-gateway', region: 'us-east-1a', pods: '4/4', latency: '12ms', status: 'Healthy' as const },
@@ -23,7 +23,7 @@ const services = [
   { name: 'notifications', region: 'us-east-1a', pods: '3/3', latency: '15ms', status: 'Healthy' as const },
 ]
 
-// ─── Section ─────────────────────────────────────────────────────────────────
+// --- Section -----------------------------------------------------------------
 
 export function OverviewSection() {
   return (
