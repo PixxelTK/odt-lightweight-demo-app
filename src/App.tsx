@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Button,
   Badge,
@@ -35,6 +35,26 @@ export default function App() {
   const [modalOpen, setModalOpen] = useState(false)
   const [notify, setNotify] = useState(true)
   const [isDeploying, setIsDeploying] = useState(false)
+  const [isDark, setIsDark] = useState(() => {
+    return document.documentElement.classList.contains('dark') ||
+      (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  })
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [isDark])
+
+  const toggleTheme = () => {
+    setIsDark((prev) => {
+      const next = !prev
+      toast.info(next ? 'Switched to Dark Mode' : 'Switched to Light Mode')
+      return next
+    })
+  }
 
   const handleDeploy = () => {
     setIsDeploying(true)
@@ -50,21 +70,21 @@ export default function App() {
       <Toaster position="top-right" />
 
       {/* Hero Header */}
-      <header className="bg-white">
+      <header className="bg-surface">
         <div className="mx-auto max-w-5xl px-6 py-10">
           <div className="flex flex-wrap items-end justify-between gap-6">
 
             {/* Brand */}
             <div>
               <h1 className="text-5xl font-extrabold leading-none tracking-tight">
-                <span style={{ color: 'hsl(240 78.3% 34.3%)' }}>ODT</span>{' '}
-                <span className="font-light" style={{ color: 'hsl(47 100% 45%)' }}>lightweight</span>
+                <span className="text-primary-600">ODT</span>{' '}
+                <span className="text-secondary-600 font-light">lightweight</span>
               </h1>
               <p className="mt-1.5 text-lg text-fg font-light">
                 Token-driven React UI - clean, lightweight, composable.
               </p>
               <div className="mt-3 flex gap-2 items-center">
-                <Badge variant="subtle" color="primary">v1.1.4</Badge>
+                <Badge variant="subtle" color="primary">v1.1.8</Badge>
                 <Badge variant="subtle" color="success" dot>Stable</Badge>
                 <Badge variant="subtle" color="info">React 19</Badge>
               </div>
@@ -72,6 +92,9 @@ export default function App() {
 
             {/* CTA Buttons */}
             <div className="flex gap-3 items-center">
+              <Button variant="ghost" onClick={toggleTheme}>
+                {isDark ? "Light" : "Dark"}
+              </Button>
               <Button variant="ghost" onClick={() => toast.info('ODT Lightweight is active!')}>
                 Quick Toast
               </Button>
@@ -85,7 +108,7 @@ export default function App() {
       </header>
 
       {/* Sticky Tab Bar */}
-      <div className="sticky top-0 z-10 bg-surface/80 backdrop-blur-sm border-b border-neutral-100">
+      <div className="sticky top-0 z-10 bg-surface/80 backdrop-blur-sm border-b border-line">
         <div className="mx-auto max-w-5xl px-6">
           <div className="flex gap-0">
             {TABS.map(({ id, label }) => {
@@ -98,8 +121,8 @@ export default function App() {
                   className={[
                     'px-5 py-3.5 text-sm font-medium transition-all border-b-2',
                     isActive
-                      ? 'border-primary-900 text-primary-900'
-                      : 'border-transparent text-neutral-400 hover:text-neutral-700',
+                      ? 'border-primary-500 text-primary-500 font-semibold'
+                      : 'border-transparent text-fg-muted hover:text-fg',
                   ].join(' ')}
                 >
                   {label}

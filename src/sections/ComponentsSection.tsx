@@ -28,13 +28,13 @@ function PlanCard() {
   return (
     <Card
       radius="2xl"
-      style={{ background: 'linear-gradient(to bottom, var(--color-primary-50), #ffffff)' }}
+      style={{ background: 'linear-gradient(to bottom, var(--color-primary-50), var(--color-surface))' }}
     >
       <CardHeader
         action={
           <p className="text-right">
             <span className="text-3xl font-bold text-primary-900">$49</span>
-            <span className="text-sm text-neutral-400">/mo</span>
+            <span className="text-sm text-fg-subtle">/mo</span>
           </p>
         }>
         <CardTitle>Pro Plan</CardTitle>
@@ -44,7 +44,7 @@ function PlanCard() {
       <CardContent>
         <ul className="flex flex-col gap-2">
           {features.map((f) => (
-            <li key={f} className="flex items-center gap-2 text-sm text-neutral-600">
+            <li key={f} className="flex items-center gap-2 text-sm text-fg-muted">
               <svg className="h-4 w-4 shrink-0 text-green-500" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
@@ -77,7 +77,7 @@ function EventCard() {
       </CardHeader>
 
       <CardContent>
-        <p className="text-sm text-neutral-600">
+        <p className="text-sm text-fg-muted">
           Reviewing the new component library, token updates, and latest design mockups with the product team.
         </p>
       </CardContent>
@@ -118,7 +118,7 @@ function TeamCard() {
             <div key={name} className="flex items-center gap-3 rounded-xl bg-surface-muted px-3 py-2.5">
               <Avatar name={name} size="sm" color={color} />
               <div className="flex-1">
-                <p className="text-sm font-semibold text-neutral-800">{name}</p>
+                <p className="text-sm font-semibold text-fg-strong">{name}</p>
                 <p className="text-xs text-neutral-400">{role}</p>
               </div>
               <Badge variant="subtle" color={color} size="sm">{role}</Badge>

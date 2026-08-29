@@ -220,8 +220,8 @@ function AutomationsCard() {
                     className={[
                       'flex items-center justify-between rounded-xl border gap-2 px-4 py-3 cursor-pointer transition-all',
                       plan === value
-                        ? 'border-neutral-200 bg-primary-50/60'
-                        : 'border-neutral-100 bg-white hover:bg-neutral-50',
+                        ? 'border-primary-500/50 bg-primary-500/10'
+                        : 'border-line bg-surface hover:bg-surface-muted',
                     ].join(' ')}
                     onClick={() => setPlan(value)}
                   >
