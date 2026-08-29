@@ -2,3 +2,137 @@
 
 /* Import ODT Design Token CSS */
 @import "odt-lightweight-ui/tailwind.css";
+
+:root {
+  /* ========================================================================
+   * 1. Primary Palette (Vibrant Orange)
+   * ======================================================================== */
+  --color-primary-0: hsl(25 95% 100%);
+  --color-primary-50: hsl(25 95% 96%);
+  --color-primary-100: hsl(25 95% 90%);
+  --color-primary-200: hsl(25 92% 80%);
+  --color-primary-300: hsl(25 90% 70%);
+  --color-primary-400: hsl(25 90% 60%);
+  --color-primary-500: hsl(25 95% 50%);
+  --color-primary-600: hsl(25 95% 44%);
+  --color-primary-700: hsl(25 95% 38%);
+  --color-primary-800: hsl(25 95% 30%);
+  --color-primary-900: hsl(25 95% 20%);
+
+  /* ========================================================================
+   * 2. Secondary Palette (Emerald / Jade)
+   * ======================================================================== */
+  --color-secondary-0: hsl(160 80% 100%);
+  --color-secondary-50: hsl(160 80% 96%);
+  --color-secondary-100: hsl(160 75% 90%);
+  --color-secondary-200: hsl(160 70% 80%);
+  --color-secondary-300: hsl(160 65% 70%);
+  --color-secondary-400: hsl(160 65% 58%);
+  --color-secondary-500: hsl(160 70% 44%);
+  --color-secondary-600: hsl(160 72% 38%);
+  --color-secondary-700: hsl(160 75% 30%);
+  --color-secondary-800: hsl(160 75% 24%);
+  --color-secondary-900: hsl(160 80% 16%);
+
+  /* ========================================================================
+   * 3. Neutral Palette (Slate Override)
+   * ======================================================================== */
+  --color-neutral-0: hsl(0 0% 100%);
+  --color-neutral-50: hsl(215 20% 98%);
+  --color-neutral-100: hsl(215 20% 95%);
+  --color-neutral-200: hsl(215 16% 89%);
+  --color-neutral-300: hsl(215 14% 80%);
+  --color-neutral-400: hsl(215 12% 62%);
+  --color-neutral-500: hsl(215 10% 46%);
+  --color-neutral-600: hsl(215 12% 32%);
+  --color-neutral-700: hsl(215 14% 24%);
+  --color-neutral-800: hsl(215 18% 15%);
+  --color-neutral-900: hsl(215 22% 10%);
+  --color-neutral-950: hsl(215 26% 5%);
+
+  /* ========================================================================
+   * 4. Semantic Feedback Colors & Subtle Tints
+   * ======================================================================== */
+  --color-success: hsl(142 71% 45%);
+  --color-success-subtle: hsl(142 71% 96%);
+
+  --color-warning: hsl(38 92% 50%);
+  --color-warning-subtle: hsl(38 92% 96%);
+
+  --color-danger: hsl(0 84% 60%);
+  --color-danger-subtle: hsl(0 84% 97%);
+
+  --color-info: hsl(217 91% 60%);
+  --color-info-subtle: hsl(217 91% 97%);
+
+  /* ========================================================================
+   * 5. Surfaces & Backgrounds
+   * ======================================================================== */
+  --color-surface: hsl(0 0% 100%);
+  --color-surface-muted: hsl(215 20% 98%);
+  --color-surface-subtle: hsl(215 20% 95%);
+  --color-surface-elevated: hsl(0 0% 100%);
+  --color-surface-primary: hsl(25 95% 50%);
+  --color-surface-secondary: hsl(160 70% 44%);
+  --color-surface-success: hsl(142 71% 96%);
+  --color-surface-warning: hsl(38 92% 96%);
+  --color-surface-danger: hsl(0 84% 97%);
+  --color-surface-info: hsl(217 91% 97%);
+
+  /* ========================================================================
+   * 6. Foreground (Text & Icon Colors)
+   * ======================================================================== */
+  --color-fg-strong: var(--color-neutral-800);
+  --color-fg: var(--color-neutral-700);
+  --color-fg-muted: var(--color-neutral-500);
+  --color-fg-subtle: var(--color-neutral-400);
+  --color-fg-disabled: var(--color-neutral-300);
+  --color-fg-inverse-strong: var(--color-neutral-0);
+  --color-fg-inverse: var(--color-neutral-50);
+  --color-fg-inverse-muted: var(--color-neutral-100);
+  --color-fg-primary: hsl(25 95% 20%);
+  --color-fg-secondary: hsl(160 80% 16%);
+  --color-ring: hsl(25 95% 50%);
+
+  /* ========================================================================
+   * 7. Borders & Lines
+   * ======================================================================== */
+  --color-line: var(--color-neutral-200);
+  --color-line-muted: var(--color-neutral-100);
+  --color-line-strong: var(--color-neutral-300);
+  --color-line-primary: hsl(25 95% 50%);
+  --color-line-success: var(--color-success);
+  --color-line-warning: var(--color-warning);
+  --color-line-danger: var(--color-danger);
+
+  /* ========================================================================
+   * 8. Border Radiuses
+   * ======================================================================== */
+  --radius-xs: 0.125rem;  /* 2px */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.375rem;  /* 6px */
+  --radius-lg: 0.5rem;    /* 8px */
+  --radius-xl: 0.75rem;   /* 12px */
+  --radius-2xl: 1rem;     /* 16px */
+  --radius-3xl: 1.5rem;   /* 24px */
+  --radius-4xl: 2rem;     /* 32px */
+  --radius-full: 9999px;
+
+  /* ========================================================================
+   * 9. Shadows & Depth Elevations
+   * ======================================================================== */
+  --shadow-none: none;
+  --shadow-card: 0 4px 6px -1px hsl(215 20% 15% / 0.05),
+                 0 2px 4px -2px hsl(215 20% 15% / 0.05);
+  --shadow-modal: 0 20px 25px -5px hsl(215 20% 15% / 0.1),
+                  0 8px 10px -6px hsl(215 20% 15% / 0.1);
+  --shadow-dropdown: 0 10px 15px -3px hsl(215 20% 15% / 0.08),
+                     0 4px 6px -4px hsl(215 20% 15% / 0.04);
+  --shadow-popover: 0 10px 15px -3px hsl(215 20% 15% / 0.08);
+
+  /* ========================================================================
+   * 10. Typography
+   * ======================================================================== */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
