@@ -1,20 +1,71 @@
-# ODT Demo App
+# ODT Demo App (Branch: `theme`)
 
-Reference implementation showcasing components and design tokens from [`odt-lightweight-ui`](https://www.npmjs.com/package/odt-lightweight-ui).
+Reference implementation showcasing **Dark Mode & Theme Switching** in [`odt-lightweight-ui`](https://www.npmjs.com/package/odt-lightweight-ui).
 
 [Storybook](https://odt-lightweight.piaxel.com/storybook/) · [React Guide](https://odt-lightweight.piaxel.com/storybook/index.html?path=/story/overview-react-npm-package--documentation) · [Dark Mode Guide](https://odt-lightweight.piaxel.com/storybook/index.html?path=/story/overview-dark-mode-guide--documentation)
 
 ---
 
+## About This Branch
+
+This branch demonstrates how to configure and toggle **Dark Mode** seamlessly across the entire application:
+
+- **Theme Toggle Button:** Integrated in `src/App.tsx` to toggle the `.dark` class on `document.documentElement`.
+- **Single Token Definition:** Defined under `.dark, [data-theme="dark"]` in `src/index.css`.
+- **Automatic Component Adaptation:** All UI primitives (`Card`, `Input`, `Button`, `Badge`, `DropdownMenu`, `StatCard`) adapt surfaces, borders, and text contrast without custom component logic.
+
+### How Dark Mode Tokens Are Configured
+
+In `src/index.css`:
+
+```css
+@import "tailwindcss";
+@import "odt-lightweight-ui/tailwind.css";
+
+.dark,
+[data-theme="dark"] {
+  /* Surfaces & Elevation */
+  --color-surface: hsl(224 25% 6%);
+  --color-surface-elevated: hsl(224 20% 10%);
+  --color-surface-muted: hsl(224 16% 15%);
+
+  /* Foregrounds & Typography */
+  --color-fg-strong: hsl(210 40% 98%);
+  --color-fg: hsl(215 20% 88%);
+  --color-fg-muted: hsl(215 16% 65%);
+
+  /* Borders & Shadows */
+  --color-line: hsl(224 14% 18%);
+  --color-line-muted: hsl(224 14% 14%);
+  --shadow-card: 0 8px 26px hsl(0 0% 0% / 0.5);
+}
+```
+
+### Theme Toggle Implementation
+
+In `src/App.tsx`:
+
+```tsx
+const [isDark, setIsDark] = useState(() =>
+  document.documentElement.classList.contains("dark"),
+);
+
+const toggleTheme = () => {
+  const next = !isDark;
+  setIsDark(next);
+  document.documentElement.classList.toggle("dark", next);
+};
+```
+
+---
+
 ## Showcase Branches
 
-This repository includes dedicated branches demonstrating different styling and token workflows:
-
-| Branch | Description | Switch Command |
-| :--- | :--- | :--- |
-| **`main`** | Baseline implementation using standard ODT design tokens. | `git checkout main` |
-| **`override-token`** | Demonstrates custom design token overrides (brand colors, radius scale, and surfaces). | `git checkout override-token` |
-| **`theme`** | Demonstrates theme switching and dark mode token configuration. | `git checkout theme` |
+| Branch                  | Description                                                                            | Switch Command                |
+| :---------------------- | :------------------------------------------------------------------------------------- | :---------------------------- |
+| **`main`**              | Baseline implementation using standard ODT design tokens.                              | `git checkout main`           |
+| **`override-token`**    | Demonstrates custom design token overrides (brand colors, radius scale, and surfaces). | `git checkout override-token` |
+| **`theme`** _(current)_ | Demonstrates theme switching and dark mode token configuration.                        | `git checkout theme`          |
 
 ---
 
@@ -53,25 +104,6 @@ npm run preview
 
 ---
 
-## Styling & Tokens
-
-Tailwind CSS v4 integration via `src/index.css`:
-
-```css
-@import "tailwindcss";
-@import "odt-lightweight-ui/tailwind.css";
-```
-
-This maps all ODT tokens to Tailwind utility classes:
-
-- **Colors:** `bg-primary-500`, `text-primary-900`, `bg-secondary-100`, `text-fg`, `text-fg-muted`
-- **Surfaces:** `bg-surface`, `bg-surface-muted`, `bg-surface-elevated`
-- **Borders:** `border-line`, `border-line-muted`, `border-primary`
-- **Radius:** `rounded-xl`, `rounded-2xl`, `rounded-full`
-- **Shadows:** `shadow-card`, `shadow-modal`, `shadow-dropdown`
-
----
-
 ## Project Structure
 
 ```
@@ -81,8 +113,8 @@ odt-demo-app/
 │   │   ├── OverviewSection.tsx     # Metrics, telemetry cards, progress bars
 │   │   ├── FormsSection.tsx        # Inputs, dropdowns, switches, radio groups
 │   │   └── ComponentsSection.tsx   # Buttons, badges, cards, modals, toasts
-│   ├── App.tsx                     # Main layout & tab navigation
-│   ├── index.css                   # Global styles & Tailwind import
+│   ├── App.tsx                     # Main layout & dark mode toggle
+│   ├── index.css                   # Dark mode CSS tokens & Tailwind imports
 │   └── main.tsx                    # React entrypoint
 ├── package.json
 └── vite.config.ts
