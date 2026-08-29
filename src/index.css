@@ -13,9 +13,9 @@
   --color-surface-subtle: hsl(224 16% 20%);
 
   --color-surface-success: hsl(152 68% 12%);
-  --color-surface-warning: hsl(36 92% 13%);
+  --color-surface-warning: hsl(38 92% 13%);
   --color-surface-danger: hsl(0 78% 14%);
-  --color-surface-info: hsl(206 90% 14%);
+  --color-surface-info: hsl(217 91% 14%);
 
   /* Foregrounds & Typography */
   --color-fg-strong: hsl(210 40% 98%);
@@ -24,40 +24,40 @@
   --color-fg-subtle: hsl(215 14% 48%);
   --color-fg-disabled: hsl(215 12% 32%);
 
-  --color-fg-primary: hsl(226 84% 74%);
-  --color-fg-secondary: hsl(36 95% 64%);
+  --color-fg-primary: hsl(240 78.3% 75%);
+  --color-fg-secondary: hsl(47 100% 65%);
   --color-success: hsl(152 68% 54%);
-  --color-warning: hsl(36 92% 58%);
+  --color-warning: hsl(38 92% 58%);
   --color-danger: hsl(0 78% 64%);
-  --color-info: hsl(206 90% 64%);
+  --color-info: hsl(217 91% 64%);
 
-  /* Primary Palette (Full Scale) */
-  --color-primary-0: hsl(226 84% 10%);
-  --color-primary-50: hsla(226, 86%, 68%, 0.18);
-  --color-primary-100: hsla(226, 86%, 68%, 0.28);
-  --color-primary-200: hsl(226 84% 32%);
-  --color-primary-300: hsl(226 84% 44%);
-  --color-primary-400: hsl(226 84% 56%);
-  --color-primary-500: hsl(226 84% 64%);
-  --color-primary-600: hsl(226 84% 72%);
-  --color-primary-700: hsl(226 84% 80%);
-  --color-primary-800: hsl(226 84% 88%);
-  --color-primary-900: hsl(226 84% 96%);
+  /* Primary Palette */
+  --color-primary-0: hsl(240 78.3% 10%);
+  --color-primary-50: hsla(240, 78.3%, 65%, 0.18);
+  --color-primary-100: hsla(240, 78.3%, 65%, 0.28);
+  --color-primary-200: hsl(240 78.3% 34.3%);
+  --color-primary-300: hsl(240 78.3% 45%);
+  --color-primary-400: hsl(240 78.3% 55%);
+  --color-primary-500: hsl(240 78.3% 65%);
+  --color-primary-600: hsl(240 78.3% 72%);
+  --color-primary-700: hsl(240 78.3% 80%);
+  --color-primary-800: hsl(240 78.3% 88%);
+  --color-primary-900: hsl(240 78.3% 96%);
 
-  /* Secondary Palette (Full Scale) */
-  --color-secondary-0: hsl(36 92% 10%);
-  --color-secondary-50: hsla(36, 92%, 52%, 0.16);
-  --color-secondary-100: hsla(36, 92%, 52%, 0.25);
-  --color-secondary-200: hsl(36 92% 28%);
-  --color-secondary-300: hsl(36 92% 38%);
-  --color-secondary-400: hsl(36 92% 46%);
-  --color-secondary-500: hsl(36 92% 52%);
-  --color-secondary-600: hsl(36 92% 62%);
-  --color-secondary-700: hsl(36 92% 72%);
-  --color-secondary-800: hsl(36 92% 82%);
-  --color-secondary-900: hsl(36 92% 90%);
+  /* Secondary Palette */
+  --color-secondary-0: hsl(47 100% 10%);
+  --color-secondary-50: hsla(47, 100%, 60%, 0.16);
+  --color-secondary-100: hsla(47, 100%, 60%, 0.25);
+  --color-secondary-200: hsl(47 100% 30%);
+  --color-secondary-300: hsl(47 100% 40%);
+  --color-secondary-400: hsl(47 100% 50%);
+  --color-secondary-500: hsl(47 100% 60%);
+  --color-secondary-600: hsl(47 100% 68%);
+  --color-secondary-700: hsl(47 100% 75%);
+  --color-secondary-800: hsl(47 100% 82%);
+  --color-secondary-900: hsl(47 100% 90%);
 
-  /* Neutral Palette (Full Scale) */
+  /* Neutral Palette */
   --color-neutral-0: hsl(224 25% 6%);
   --color-neutral-50: hsl(224 20% 10%);
   --color-neutral-100: hsl(224 16% 15%);
@@ -75,7 +75,7 @@
   --color-line: hsl(224 14% 18%);
   --color-line-muted: hsl(224 14% 14%);
   --color-line-strong: hsl(224 14% 26%);
-  --color-ring: hsl(226 84% 64%);
+  --color-ring: hsl(240 78.3% 65%);
   --color-shadow: hsl(0 0% 0%);
 
   --shadow-card: 0 8px 26px hsl(0 0% 0% / 0.50);
@@ -83,5 +83,5 @@
   --shadow-modal: 0 16px 40px hsl(0 0% 0% / 0.70);
   --shadow-popover: 0 24px 64px hsl(0 0% 0% / 0.80);
 
-  --gradient-card: linear-gradient(to bottom, hsl(226 84% 18% / 0.35), hsl(224 20% 10%));
+  --gradient-card: linear-gradient(to bottom, hsla(240, 78.3%, 65%, 0.25), hsl(224 20% 10%));
 }
