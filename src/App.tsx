@@ -64,7 +64,7 @@ export default function App() {
                 Token-driven React UI - clean, lightweight, composable.
               </p>
               <div className="mt-3 flex gap-2 items-center">
-                <Badge variant="subtle" color="primary">v1.1.4</Badge>
+                <Badge variant="subtle" color="primary">v1.1.8</Badge>
                 <Badge variant="subtle" color="success" dot>Stable</Badge>
                 <Badge variant="subtle" color="info">React 19</Badge>
               </div>
