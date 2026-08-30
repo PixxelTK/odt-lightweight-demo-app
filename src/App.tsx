@@ -106,7 +106,7 @@ export default function App() {
       </header>
 
       {/* Sticky Tab Bar */}
-      <div className="sticky top-0 z-10 bg-surface/80 backdrop-blur-sm border-b border-line">
+      <div className="sticky top-0 z-10 bg-surface/80 backdrop-blur-sm">
         <div className="mx-auto max-w-5xl px-6">
           <div className="flex gap-0">
             {TABS.map(({ id, label }) => {
@@ -117,7 +117,7 @@ export default function App() {
                   type="button"
                   onClick={() => setTab(id)}
                   className={[
-                    'px-5 py-3.5 text-sm font-medium transition-all border-b-2',
+                    'px-5 py-3.5 text-sm cursor-pointer font-medium transition-all border-b-2',
                     isActive
                       ? 'border-primary-500 text-primary-500 font-semibold'
                       : 'border-transparent text-fg-muted hover:text-fg',
