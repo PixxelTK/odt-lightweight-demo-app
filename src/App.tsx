@@ -49,11 +49,9 @@ export default function App() {
   }, [isDark])
 
   const toggleTheme = () => {
-    setIsDark((prev) => {
-      const next = !prev
-      toast.info(next ? 'Switched to Dark Mode' : 'Switched to Light Mode')
-      return next
-    })
+    const next = !isDark
+    setIsDark(next)
+    toast.info(next ? 'Switched to Dark Mode' : 'Switched to Light Mode')
   }
 
   const handleDeploy = () => {
