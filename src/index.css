@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "odt-lightweight-ui/tailwind.css";
 
+body {
+  background-color: var(--color-surface);
+  color: var(--color-fg);
+}
+
 .dark,
 [data-theme="dark"] {
   /* ==========================================================================
