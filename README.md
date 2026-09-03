@@ -2,6 +2,8 @@
 
 Reference implementation showcasing components and design tokens from [`odt-lightweight-ui`](https://www.npmjs.com/package/odt-lightweight-ui).
 
+[View Ruby on Rails Demo](https://github.com/PixxelTK/odt-demo-app-rails)
+
 [Storybook](https://odt-lightweight.piaxel.com/storybook/) · [React Guide](https://odt-lightweight.piaxel.com/storybook/index.html?path=/story/overview-react-npm-package--documentation) · [Dark Mode Guide](https://odt-lightweight.piaxel.com/storybook/index.html?path=/story/overview-dark-mode-guide--documentation)
 
 ---
