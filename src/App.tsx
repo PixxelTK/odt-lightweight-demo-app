@@ -64,7 +64,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-surface font-sans antialiased">
+    <div className="min-h-screen bg-surface-muted font-sans antialiased">
       <Toaster position="top-right" />
 
       {/* Hero Header */}
@@ -75,8 +75,8 @@ export default function App() {
             {/* Brand */}
             <div>
               <h1 className="text-5xl font-extrabold leading-none tracking-tight">
-                <span className="text-primary-600">ODT</span>{' '}
-                <span className="text-secondary-600 font-light">lightweight</span>
+                <span className="text-fg-primary">ODT</span>{' '}
+                <span className="text-fg-secondary font-light">lightweight</span>
               </h1>
               <p className="mt-1.5 text-lg text-fg font-light">
                 Token-driven React UI - clean, lightweight, composable.
